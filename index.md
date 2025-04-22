@@ -13,16 +13,16 @@ From the satellite imagery, we can see that greenspaces are unevenly distributed
 ### Data Description 
 Before fitting our linear regression model, we prepared the data to meet the assumptions required for Ordinary Least Squares (OLS) regression. This process included filtering, variable selection, and transformation steps to ensure statistical validity and model performance.
 
-#### Data Selection
+** Data Selection
 I began with a merged dataset containing greenness (NDVI) metrics and CDC Places health data for Chicago census tracts. To prepare the data for modeling:
 
 Selected the following variables: frac_veg, asthma, mean_patch_size, edge_density, and geometry.
 
 I used .dropna() to eliminate rows with missing values. This step ensures that our model is trained on complete data, avoiding the introduction of bias or instability from NaNs.
 
-#### Variable Transformation
+** Variable Transformation
 Upon exploratory analysis using hvplot.scatter_matrix(), we observed that the asthma variable was right-skewed. Since OLS regression assumes normally distributed residuals, we applied a log transformation to asthma to reduce skew and approximate a normal distribution. This transformation helps stabilize variance and improve the linear relationship with predictor variables. 
 
-#### Interpretation of Variable Relationships
+** Interpretation of Variable Relationships
 The scatter matrix revealed moderate linear relationships between green space structure metrics and log_asthma. Edge_density appears inversely related to asthma prevalence, suggesting areas with more fragmented vegetation may correlate with lower health outcomes. Mean_patch_size may indicate the overall connectivity or isolation of green space, which could also influence environmental exposure.
 
