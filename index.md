@@ -1,10 +1,28 @@
 # Earth Data Science Portfolio: Urban Greenspace
 
 ## Overview
-In this project, we will split the green space (NDVI) data by census tract, as this matches the human health data from the CDC. If we were interested in the average NDVI at this spatial scale, we could easily use a source of multispectral data, such as Landsat (30 m) or MODIS (250 m), without significantly impacting our results. However, because we need to know more about the structure of green space within each tract, we need higher-resolution data. For that, we will access the National Agricultural Imagery Program (NAIP) data, which is taken for the continental US every few years at 1m resolution. That’s enough to see individual trees and cars! The main purpose of the NAIP data, as the name suggests, is agriculture. However, it’s also a great source for urban areas where lots is happening on a very small scale.
+In this project, I aimed to analyze green space within the City of Chicago at the census tract level by leveraging high-resolution satellite imagery. By aligning with the spatial resolution of human health data from the CDC, this analysis supports more precise investigations into potential relationships between urban vegetation and public health outcomes. While coarser satellite data, such as Landsat (30m) or MODIS (250m), may suffice for average NDVI assessments, understanding the structure and distribution of green space within urban areas requires finer detail.
 
-The NAIP data for the City of Chicago occupies about 20 GB of space. This amount of data is likely to crash your kernel if you try to load it all in at once. It would also be inconvenient to store on your hard drive, so that you can load it in bits at a time for analysis. Even if you are using a computer that can handle this amount of data, imagine analyzing the entire United States over multiple years!
+To achieve this, I will utilize 1-meter resolution imagery from the National Agricultural Imagery Program (NAIP), which captures detailed views sufficient to identify individual trees and vehicles. Although originally intended for agricultural monitoring, NAIP’s spatial resolution makes it especially valuable for studying complex urban environments.
 
-To help with this problem, you will use cloud-based tools to calculate your statistics instead of downloading rasters to your computer or container. You can crop the data entirely in the cloud, thereby saving on your memory and internet connection, using rioxarray.
+### Site Description
+The site map visualizes the City of Chicago using modified census tracts from the CDC Places dataset, overlaid on high-resolution satellite imagery. The tracts have been clipped to the city boundary, ensuring alignment with public health data for spatial comparison. By filtering the dataset to include only tracts labeled "Chicago," we ensure our analysis is both geographically and contextually relevant.
 
+From the satellite imagery, we can see that greenspaces are unevenly distributed across the city. Larger parks and vegetated areas are mainly concentrated on the outskirts and in certain pockets of the western and southern regions. In contrast, the central and lakeshore areas appear more densely developed with sparse green space. The grid layout of the city becomes less defined as we move inland, reflecting variations in land use and urban planning across different neighborhoods.
+
+### Data Description 
+Before fitting our linear regression model, we prepared the data to meet the assumptions required for Ordinary Least Squares (OLS) regression. This process included filtering, variable selection, and transformation steps to ensure statistical validity and model performance.
+
+#### Data Selection
+I began with a merged dataset containing greenness (NDVI) metrics and CDC Places health data for Chicago census tracts. To prepare the data for modeling:
+
+Selected the following variables: frac_veg, asthma, mean_patch_size, edge_density, and geometry.
+
+I used .dropna() to eliminate rows with missing values. This step ensures that our model is trained on complete data, avoiding the introduction of bias or instability from NaNs.
+
+#### Variable Transformation
+Upon exploratory analysis using hvplot.scatter_matrix(), we observed that the asthma variable was right-skewed. Since OLS regression assumes normally distributed residuals, we applied a log transformation to asthma to reduce skew and approximate a normal distribution. This transformation helps stabilize variance and improve the linear relationship with predictor variables. 
+
+#### Interpretation of Variable Relationships
+The scatter matrix revealed moderate linear relationships between green space structure metrics and log_asthma. Edge_density appears inversely related to asthma prevalence, suggesting areas with more fragmented vegetation may correlate with lower health outcomes. Mean_patch_size may indicate the overall connectivity or isolation of green space, which could also influence environmental exposure.
 
