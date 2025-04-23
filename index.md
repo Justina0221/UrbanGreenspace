@@ -1,12 +1,14 @@
 # Earth Data Science Portfolio: Urban Greenspace
 
+![Alt text](siouxfalls1.png)
+
 ## Overview
 In this project, I aimed to analyze green space within the City of Sioux Falls at the census tract level by leveraging high-resolution satellite imagery. By aligning with the spatial resolution of human health data from the CDC, this analysis supports more precise investigations into potential relationships between urban vegetation and public health outcomes. While coarser satellite data can be used to understand the structure and distribution of green space within urban areas to provide finer details.
 
 To achieve this, I will utilize 1-meter resolution imagery from the National Agricultural Imagery Program (NAIP), which captures detailed views sufficient to identify individual trees and vehicles. Although originally intended for agricultural monitoring, NAIP’s spatial resolution makes it especially valuable for studying complex urban environments.
 
 ### Site Description
-The site map visualizes the City of Chicago using modified census tracts from the CDC Places dataset, overlaid on high-resolution satellite imagery. The tracts have been clipped to the city boundary, ensuring alignment with public health data for spatial comparison. By filtering the dataset to include only tracts labeled "Chicago," we ensure our analysis is both geographically and contextually relevant.
+The site map visualizes the City of Sioux Falls using modified census tracts from the CDC Places dataset, overlaid on high-resolution satellite imagery. The tracts have been clipped to the city boundary, ensuring alignment with public health data for spatial comparison. By filtering the dataset to include only tracts labeled "Chicago," we ensure our analysis is both geographically and contextually relevant.
 
 From the satellite imagery, we can see that greenspaces are unevenly distributed across the city. Larger parks and vegetated areas are mainly concentrated on the outskirts and in certain pockets of the western and southern regions. In contrast, the central and lakeshore areas appear more densely developed with sparse green space. The grid layout of the city becomes less defined as we move inland, reflecting variations in land use and urban planning across different neighborhoods.
 
